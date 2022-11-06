@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import SiteHeader from './components/siteHeader';
 import SiteFooter from './components/siteFooter';
 import HomePage from "./pages/HomePage";
+import PopularMoviePage from './pages/PopularMoviePage';
 import MenuContextProvider from "./contexts/menuContext";
 import MoviesContextProvider from "./contexts/moviesContext";
 
@@ -27,7 +28,7 @@ const App = () => {
           <MoviesContextProvider>
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/movies" element={<HomePage />} />
+              <Route path="/movies" element={<PopularMoviePage />} />
               <Route path="/movies/:id" element={<HomePage />} />
               <Route path="/movies/upcoming" element={<HomePage />} />
               <Route path="/movies/top-rated" element={<HomePage />} />

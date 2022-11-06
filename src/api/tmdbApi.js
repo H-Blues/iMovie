@@ -1,8 +1,9 @@
 const baseUrl = 'https://api.themoviedb.org/3/';
+const lang = 'en-US';
 
-export const getMovies = () => {
+export const getMovies = async () => {
   return fetch(
-    baseUrl + `discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+    `${baseUrl}discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}include_adult=false&include_video=false&page=1`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -14,11 +15,11 @@ export const getMovies = () => {
     });
 };
 
-export const getMovie = (args) => {
+export const getMovie = async (args) => {
   const [, idPart] = args.queryKey;
   const { id } = idPart;
   return fetch(
-    baseUrl + `movie/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    `${baseUrl}movie/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -30,11 +31,9 @@ export const getMovie = (args) => {
     });
 };
 
-export const getGenres = async () => {
+export const getMovieGenres = async () => {
   return fetch(
-    baseUrl + "genre/movie/list?api_key=" +
-    process.env.REACT_APP_TMDB_KEY +
-    "&language=en-US"
+    `${baseUrl}genre/movie/list?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -46,11 +45,11 @@ export const getGenres = async () => {
     });
 };
 
-export const getMovieImages = ({ queryKey }) => {
+export const getMovieImages = async ({ queryKey }) => {
   const [, idPart] = queryKey;
   const { id } = idPart;
   return fetch(
-    baseUrl + `movie/${id}/images?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    `${baseUrl}movie/${id}/images?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -63,9 +62,9 @@ export const getMovieImages = ({ queryKey }) => {
     });
 };
 
-export const getMovieReviews = (id) => {
+export const getMovieReviews = async (id) => {
   return fetch(
-    baseUrl + `movie/${id}/reviews?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    `${baseUrl}movie/${id}/reviews?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}`
   )
     .then((res) => res.json())
     .then((json) => {
@@ -73,9 +72,11 @@ export const getMovieReviews = (id) => {
     });
 };
 
-export const getUpcoming = () => {
+export const getPopularMovies = async (args) => {
+  const [, pagePart] = args.queryKey;
+  const { page } = pagePart;
   return fetch(
-    baseUrl + `movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
+    `${baseUrl}movie/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}&page=${page}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -87,9 +88,37 @@ export const getUpcoming = () => {
     });
 };
 
-export const getTV = () => {
+export const getUpcoming = async () => {
   return fetch(
-    baseUrl + `tv/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
+    `${baseUrl}movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}&page=1`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  })
+    .catch((error) => {
+      throw error;
+    });
+};
+
+export const getTopRatedMovies = async () => {
+  return fetch(
+    `${baseUrl}movie/top_rated?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}&page=1`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  })
+    .catch((error) => {
+      throw error;
+    });
+};
+
+export const getPopularTV = async () => {
+  return fetch(
+    `${baseUrl}tv/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}&page=1`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
