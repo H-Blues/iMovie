@@ -1,11 +1,26 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Spinner from '../../components/spinner';
+import { getMovie } from '../../api/tmdbApi';
 import { Autoplay } from 'swiper';
 import 'swiper/css';
 import './index.css';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
+import { useQuery } from 'react-query';
 
 const MovieBackdrop = () => {
+  const movieIds = [101, 13, 157336, 680];
+  var { data: mc1, isLoading: l1 } = useQuery(['mc1', { id: movieIds[0] }], getMovie);
+  var { data: mc2, isLoading: l2 } = useQuery(['mc2', { id: movieIds[1] }], getMovie);
+  var { data: mc3, isLoading: l3 } = useQuery(['mc3', { id: movieIds[2] }], getMovie);
+  var { data: mc4, isLoading: l4 } = useQuery(['mc4', { id: movieIds[3] }], getMovie);
+
+  if (l1 || l2 || l3 || l4) {
+    return <Spinner />;
+  }
+
+  const baseUrl = 'https://www.themoviedb.org/t/p/original';
+
   return (
     <>
       <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -15,63 +30,102 @@ const MovieBackdrop = () => {
           spaceBetween={100}
           slidesPerView={1}
           autoplay={{ delay: 3000 }}>
-          <SwiperSlide className="single-film">
+          <SwiperSlide className="singleFilm">
             <div
-              className="single-film-box"
+              className="singleFilmBox"
               style={{
-                backgroundImage:
-                  "url('https://www.themoviedb.org/t/p/original/kkasrgvyhb0sW45FUKb4poWBrfr.jpg')",
+                borderRadius: '20px',
+                backgroundImage: `url(${baseUrl}${mc1.backdrop_path})`,
               }}>
               <div className="glassbox">
-                <img
-                  src="https://www.themoviedb.org/t/p/original/1seIJ8wIKo3KXp7hnwS5wj69U8M.jpg"
-                  width="20%"
-                  height="auto"></img>
-                <p>some Description</p>
+                <img className="poster" src={baseUrl + mc1.poster_path} alt="poster" />
+                <div className="description">
+                  <h1>{mc1.original_title}</h1>
+                  <p>{mc1.overview}</p>
+                  <div className="buttonRow">
+                    <Button className="btn" variant="contained" color="error" size="large">
+                      Watch Now
+                    </Button>
+                    <Button className="btn" variant="outlined" color="error" size="large">
+                      Details
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="single-film">
+
+          <SwiperSlide className="singleFilm">
             <div
-              className="single-film-box"
+              className="singleFilmBox"
               style={{
-                backgroundImage:
-                  "url('https://www.themoviedb.org/t/p/original/6Ys6koNajP5ld9EIMfOSQrRquki.jpg')",
+                borderRadius: '20px',
+                backgroundImage: `url(${baseUrl}${mc2.backdrop_path})`,
               }}>
               <div className="glassbox">
-                <p>some Description</p>
+                <img className="poster" src={baseUrl + mc2.poster_path} alt="poster" />
+                <div className="description">
+                  <h1>{mc2.original_title}</h1>
+                  <p>{mc2.overview}</p>
+                  <div className="buttonRow">
+                    <Button className="btn" variant="contained" color="error" size="large">
+                      Watch Now
+                    </Button>
+                    <Button className="btn" variant="outlined" color="error" size="large">
+                      Details
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="single-film">
+
+          <SwiperSlide className="singleFilm">
             <div
-              className="single-film-box"
+              className="singleFilmBox"
               style={{
-                backgroundImage:
-                  "url('https://www.themoviedb.org/t/p/original/qvXMeKlpTA5FarDL2PHHkgxCZAD.jpg')",
+                borderRadius: '20px',
+                backgroundImage: `url(${baseUrl}${mc3.backdrop_path})`,
               }}>
               <div className="glassbox">
-                <img
-                  src="https://www.themoviedb.org/t/p/original/tkJfnCynZC7lmNouKJ53w9n72sf.jpg"
-                  width="25%"
-                  height="auto"></img>
-                <p>some Description</p>
+                <img className="poster" src={baseUrl + mc3.poster_path} alt="poster" />
+                <div className="description">
+                  <h1>{mc3.original_title}</h1>
+                  <p>{mc3.overview}</p>
+                  <div className="buttonRow">
+                    <Button className="btn" variant="contained" color="error" size="large">
+                      Watch Now
+                    </Button>
+                    <Button className="btn" variant="outlined" color="error" size="large">
+                      Details
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="single-film">
+
+          <SwiperSlide className="singleFilm">
             <div
-              className="single-film-box"
+              className="singleFilmBox"
               style={{
-                backgroundImage:
-                  "url('https://www.themoviedb.org/t/p/original/o1k6zNKYVQuNx5DIyVpT9j6gwaQ.jpg')",
+                borderRadius: '20px',
+                backgroundImage: `url(${baseUrl}${mc4.backdrop_path})`,
               }}>
               <div className="glassbox">
-                <img
-                  src="https://www.themoviedb.org/t/p/original/3R3dopFTwneJVPW3ubcrnoPfI05.jpg"
-                  width="25%"
-                  height="auto"></img>
-                <p>some Description</p>
+                <img className="poster" src={baseUrl + mc4.poster_path} alt="poster" />
+                <div className="description">
+                  <h1>{mc4.original_title}</h1>
+                  <p>{mc4.overview}</p>
+                  <div className="buttonRow">
+                    <Button className="btn" variant="contained" color="error" size="large">
+                      Watch Now
+                    </Button>
+                    <Button className="btn" variant="outlined" color="error" size="large">
+                      Details
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </SwiperSlide>

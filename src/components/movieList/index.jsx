@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import MovieCard from '../movieCard';
 import Box from '@mui/material/Box';
@@ -8,9 +8,6 @@ import 'swiper/css/scrollbar';
 import { Scrollbar } from 'swiper';
 
 function MovieList({ movies }) {
-  const [nameFilter, setNameFilter] = useState('');
-  const [genreFilter, setGenreFilter] = useState('0');
-  const genreId = Number(genreFilter);
   const navigate = useNavigate();
 
   const movieDetail = (movie) => {
@@ -19,6 +16,7 @@ function MovieList({ movies }) {
 
   return (
     <>
+      {/* for pc */}
       <Box
         component="span"
         className="movie-list"
@@ -44,6 +42,7 @@ function MovieList({ movies }) {
         </Swiper>
       </Box>
 
+      {/* for mobile */}
       <Box className="movie-list" sx={{ display: { xs: 'flex', md: 'none' } }}>
         <Swiper
           slidesPerView={2.75}

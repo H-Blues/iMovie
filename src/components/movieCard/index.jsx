@@ -11,6 +11,13 @@ const StyledRating = styled(Rating)({
   },
 });
 
+const styles = {
+  showOnlyPC: {
+    maxWidth: '70%',
+    display: { xs: 'none', md: 'block' },
+  },
+};
+
 const MovieCard = ({ movie }) => {
   const movieImg = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
   return (
@@ -18,21 +25,18 @@ const MovieCard = ({ movie }) => {
       <div className="movie-card" style={{ width: 'fit-content' }}>
         <img
           src={movieImg}
-          style={{
-            maxWidth: '100%',
-            maxHeight: 'auto',
-            borderRadius: '20px',
-          }}
+          style={{ maxWidth: '100%', maxHeight: 'auto', borderRadius: '20px' }}
+          alt="notFound"
         />
         <Typography
           gutterBottom
           variant="h6"
           component="p"
-          sx={{ maxWidth: '80%' }}>
-          {movie.title}
+          sx={styles.showOnlyPC}>
+          {movie.title || movie.name}
         </Typography>
-        <Typography variant="body" color="text" sx={{ maxWidth: '50%' }}>
-          {movie.release_date}
+        <Typography variant="body" color="text" sx={styles.showOnlyPC}>
+          {movie.release_date || movie.first_air_date}
         </Typography>
         <StyledRating
           defaultValue={movie.vote_average / 2}
@@ -41,9 +45,9 @@ const MovieCard = ({ movie }) => {
           icon={<ThumbUpAltIcon fontSize="inherit" />}
           emptyIcon={<ThumbUpOffAltIcon fontSize="inherit" />}
           sx={{
-            margin: '-2% 5%',
+            margin: '0% 5%',
             float: 'right',
-            maxWidth: '35%',
+            maxWidth: '100%',
             display: { xs: 'none', md: 'flex' },
           }}
         />
