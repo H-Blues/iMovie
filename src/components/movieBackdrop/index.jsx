@@ -19,7 +19,7 @@ const MovieBackdrop = () => {
     return <Spinner />;
   }
 
-  const baseUrl = 'https://www.themoviedb.org/t/p/original';
+  const imgUrl = 'https://www.themoviedb.org/t/p/original';
 
   return (
     <>
@@ -35,10 +35,10 @@ const MovieBackdrop = () => {
               className="singleFilmBox"
               style={{
                 borderRadius: '20px',
-                backgroundImage: `url(${baseUrl}${mc1.backdrop_path})`,
+                backgroundImage: `url(${imgUrl}${mc1.backdrop_path})`,
               }}>
               <div className="glassbox">
-                <img className="poster" src={baseUrl + mc1.poster_path} alt="poster" />
+                <img className="poster" src={imgUrl + mc1.poster_path} alt="poster" />
                 <div className="description">
                   <h1>{mc1.original_title}</h1>
                   <p>{mc1.overview}</p>
@@ -60,10 +60,10 @@ const MovieBackdrop = () => {
               className="singleFilmBox"
               style={{
                 borderRadius: '20px',
-                backgroundImage: `url(${baseUrl}${mc2.backdrop_path})`,
+                backgroundImage: `url(${imgUrl}${mc2.backdrop_path})`,
               }}>
               <div className="glassbox">
-                <img className="poster" src={baseUrl + mc2.poster_path} alt="poster" />
+                <img className="poster" src={imgUrl + mc2.poster_path} alt="poster" />
                 <div className="description">
                   <h1>{mc2.original_title}</h1>
                   <p>{mc2.overview}</p>
@@ -85,10 +85,10 @@ const MovieBackdrop = () => {
               className="singleFilmBox"
               style={{
                 borderRadius: '20px',
-                backgroundImage: `url(${baseUrl}${mc3.backdrop_path})`,
+                backgroundImage: `url(${imgUrl}${mc3.backdrop_path})`,
               }}>
               <div className="glassbox">
-                <img className="poster" src={baseUrl + mc3.poster_path} alt="poster" />
+                <img className="poster" src={imgUrl + mc3.poster_path} alt="poster" />
                 <div className="description">
                   <h1>{mc3.original_title}</h1>
                   <p>{mc3.overview}</p>
@@ -110,10 +110,10 @@ const MovieBackdrop = () => {
               className="singleFilmBox"
               style={{
                 borderRadius: '20px',
-                backgroundImage: `url(${baseUrl}${mc4.backdrop_path})`,
+                backgroundImage: `url(${imgUrl}${mc4.backdrop_path})`,
               }}>
               <div className="glassbox">
-                <img className="poster" src={baseUrl + mc4.poster_path} alt="poster" />
+                <img className="poster" src={imgUrl + mc4.poster_path} alt="poster" />
                 <div className="description">
                   <h1>{mc4.original_title}</h1>
                   <p>{mc4.overview}</p>

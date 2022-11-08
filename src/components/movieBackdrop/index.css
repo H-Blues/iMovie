@@ -73,12 +73,30 @@
   width: 65%;
 }
 
+.buttonRow {
+  position: absolute;
+  right: 10%;
+  bottom: 15%;
+}
+
+.buttonRow .btn {
+  margin: 10px;
+  font-size: 18px;
+  border-radius: 30px;
+}
+
 @media (max-width: 1600px) {
   .description h1 {
     font-size: 30px;
   }
   .description p {
     font-size: 20px;
+  }
+  .buttonRow {
+    bottom: 8%;
+  }
+  .buttonRow .btn {
+    font-size: 14px;
   }
 }
 
@@ -89,16 +107,11 @@
   .description p {
     font-size: 13px;
   }
-}
-
-.buttonRow {
-  position: fixed;
-  right: 10%;
-  bottom: 20%;
-}
-
-.buttonRow .btn {
-  margin: 10px;
-  font-size: 20px;
-  border-radius: 30px;
+  .buttonRow {
+    bottom: 5%;
+  }
+  .buttonRow .btn {
+    font-size: 10px;
+    padding: 2;
+  }
 }

@@ -88,9 +88,11 @@ export const getPopularMovies = async (args) => {
     });
 };
 
-export const getUpcoming = async () => {
+export const getUpcoming = async (args) => {
+  const [, pagePart] = args.queryKey;
+  const { page } = pagePart;
   return fetch(
-    `${baseUrl}movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}&page=1`
+    `${baseUrl}movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}&page=${page}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -102,9 +104,28 @@ export const getUpcoming = async () => {
     });
 };
 
-export const getTopRatedMovies = async () => {
+export const getTopRatedMovies = async (args) => {
+  const [, pagePart] = args.queryKey;
+  const { page } = pagePart;
   return fetch(
-    `${baseUrl}movie/top_rated?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}&page=1`
+    `${baseUrl}movie/top_rated?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}&page=${page}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  })
+    .catch((error) => {
+      throw error;
+    });
+};
+
+
+export const getTV = async (args) => {
+  const [, idPart] = args.queryKey;
+  const { id } = idPart;
+  return fetch(
+    `${baseUrl}tv/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -119,6 +140,22 @@ export const getTopRatedMovies = async () => {
 export const getPopularTV = async () => {
   return fetch(
     `${baseUrl}tv/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}&page=1`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  })
+    .catch((error) => {
+      throw error;
+    });
+};
+
+export const getPerson = async (args) => {
+  const [, idPart] = args.queryKey;
+  const { id } = idPart;
+  return fetch(
+    `${baseUrl}person/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);

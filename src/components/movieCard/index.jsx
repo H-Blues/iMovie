@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
@@ -31,8 +32,9 @@ const MovieCard = ({ movie }) => {
         <Typography
           gutterBottom
           variant="h6"
-          component="p"
-          sx={styles.showOnlyPC}>
+          component={Link}
+          to={`/movies/${movie.id}`}
+          sx={{ color: 'black', textDecoration: 'none' }}>
           {movie.title || movie.name}
         </Typography>
         <Typography variant="body" color="text" sx={styles.showOnlyPC}>
