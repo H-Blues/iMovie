@@ -2,22 +2,17 @@ import React from 'react';
 import MovieBackdrop from '../components/movieBackdrop';
 import MovieList from '../components/movieList';
 import Spinner from '../components/spinner';
-import {
-  getPopularMovies,
-  getTopRatedMovies,
-  getUpcoming,
-  getPopularTV,
-} from '../api/tmdbApi';
+import { getPopularMovies, getTopRatedMovies, getUpcoming, getPopularTV } from '../api/tmdbApi';
 import { useQueries } from 'react-query';
 import { Button, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const results = useQueries([
-    { queryKey: ['popularMovies', 1], queryFn: getPopularMovies },
-    { queryKey: ['topRatedMovies'], queryFn: getTopRatedMovies },
-    { queryKey: ['upComingMovies'], queryFn: getUpcoming },
-    { queryKey: ['popularTV'], queryFn: getPopularTV },
+    { queryKey: ['popularMovies1', { page: 1 }], queryFn: getPopularMovies },
+    { queryKey: ['topRatedMovies1', { page: 1 }], queryFn: getTopRatedMovies },
+    { queryKey: ['upComingMovies1', { page: 1 }], queryFn: getUpcoming },
+    { queryKey: ['popularTV1', { page: 1 }], queryFn: getPopularTV },
   ]);
 
   if (
@@ -29,12 +24,7 @@ const HomePage = () => {
     return <Spinner />;
   }
 
-  if (
-    results[0].isError ||
-    results[1].isError ||
-    results[2].isError ||
-    results[3].isError
-  ) {
+  if (results[0].isError || results[1].isError || results[2].isError || results[3].isError) {
     return <h1>Error in fetching data</h1>;
   }
 
@@ -61,11 +51,7 @@ const HomePage = () => {
   return (
     <>
       <MovieBackdrop />
-      <Typography
-        gutterBottom
-        variant="h2"
-        component="p"
-        sx={{ textAlign: 'center' }}>
+      <Typography gutterBottom variant="h2" component="p" sx={{ textAlign: 'center' }}>
         Find you like
       </Typography>
 
@@ -81,7 +67,7 @@ const HomePage = () => {
             MORE
           </Button>
         </div>
-        <MovieList movies={popularMovies} />
+        <MovieList movies={popularMovies} type="movies" />
       </div>
 
       <div className="section" style={{ marginBottom: '20px' }}>
@@ -96,7 +82,7 @@ const HomePage = () => {
             MORE
           </Button>
         </div>
-        <MovieList movies={topRatedMovies} />
+        <MovieList movies={topRatedMovies} type="movies" />
       </div>
 
       <div className="section" style={{ marginBottom: '20px' }}>
@@ -111,7 +97,7 @@ const HomePage = () => {
             MORE
           </Button>
         </div>
-        <MovieList movies={upcoimgMovies} />
+        <MovieList movies={upcoimgMovies} type="movies" />
       </div>
 
       <div className="section" style={{ marginBottom: '20px' }}>
@@ -126,7 +112,7 @@ const HomePage = () => {
             MORE
           </Button>
         </div>
-        <MovieList movies={popularTV} />
+        <MovieList movies={popularTV} type="tv" />
       </div>
     </>
   );

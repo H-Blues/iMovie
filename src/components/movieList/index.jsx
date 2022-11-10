@@ -7,11 +7,12 @@ import 'swiper/css';
 import 'swiper/css/scrollbar';
 import { Scrollbar } from 'swiper';
 
-function MovieList({ movies }) {
+function MovieList({ movies, type }) {
+  console.log(type);
   const navigate = useNavigate();
 
   const movieDetail = (movie) => {
-    navigate('/movies/' + movie.id);
+    navigate(`${type}${movie.id}`);
   };
 
   return (
@@ -36,7 +37,7 @@ function MovieList({ movies }) {
           modules={[Scrollbar]}>
           {movies.map((m, i) => (
             <SwiperSlide key={i} onClick={() => movieDetail(m)}>
-              <MovieCard key={m.id} movie={m} />
+              <MovieCard key={m.id} movie={m} type={type} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -55,7 +56,7 @@ function MovieList({ movies }) {
           style={{ maxWidth: '90%' }}>
           {movies.map((m, i) => (
             <SwiperSlide key={i} onClick={() => movieDetail(m)}>
-              <MovieCard key={m.id} movie={m} />
+              <MovieCard key={m.id} movie={m} type={type} />
             </SwiperSlide>
           ))}
         </Swiper>

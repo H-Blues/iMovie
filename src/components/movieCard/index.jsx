@@ -19,7 +19,7 @@ const styles = {
   },
 };
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, type }) => {
   const movieImg = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
   return (
     <>
@@ -33,7 +33,7 @@ const MovieCard = ({ movie }) => {
           gutterBottom
           variant="h6"
           component={Link}
-          to={`/movies/${movie.id}`}
+          to={`/${type}/${movie.id}`}
           sx={{ color: 'black', textDecoration: 'none' }}>
           {movie.title || movie.name}
         </Typography>

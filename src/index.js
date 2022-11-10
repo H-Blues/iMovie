@@ -5,7 +5,11 @@ import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import SiteHeader from './components/siteHeader';
 import SiteFooter from './components/siteFooter';
 import HomePage from "./pages/HomePage";
-import PopularMoviePage from './pages/PopularMoviePage';
+import PopularMoviePage from './pages/Movie/PopularMoviePage';
+import UpcomingMoviePage from './pages/Movie/UpcomingMoviePage';
+import TopRatedMoviePage from './pages/Movie/TopRatedMoviePage';
+import PopularTVPage from './pages/TV/PopularTVPage';
+import DetailPage from './pages/Detail';
 import MenuContextProvider from "./contexts/menuContext";
 import MoviesContextProvider from "./contexts/moviesContext";
 
@@ -29,11 +33,11 @@ const App = () => {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/movies" element={<PopularMoviePage />} />
-              <Route path="/movies/:id" element={<HomePage />} />
-              <Route path="/movies/upcoming" element={<HomePage />} />
-              <Route path="/movies/top-rated" element={<HomePage />} />
-              <Route path="/tv" element={<HomePage />} />
-              <Route path="/tv/:id" element={<HomePage />} />
+              <Route path="/movies/:id" element={<DetailPage type='movie' />} />
+              <Route path="/movies/upcoming" element={<UpcomingMoviePage />} />
+              <Route path="/movies/top-rated" element={<TopRatedMoviePage />} />
+              <Route path="/tv" element={<PopularTVPage />} />
+              <Route path="/tv/:id" element={<DetailPage type='tv' />} />
               <Route path="/people" element={<HomePage />} />
               <Route path="/people/:id" element={<HomePage />} />
               <Route path="/:user/favourites" element={<HomePage />} />
