@@ -3,26 +3,35 @@ import React, { useState } from 'react';
 export const MoviesContext = React.createContext(null);
 
 const MoviesContextProvider = (props) => {
-  const [favorites, setFavorites] = useState([]);
-  const [myReviews, setMyReviews] = useState({});
+  const [movieFavorites, setMovieFavorites] = useState([]);
+  const [tvFavorites, setTvFavorites] = useState([]);
   const [playlist, setPlaylist] = useState([]);
 
-  const addToFavorites = (movie) => {
+  const addToFavorites = (item, type) => {
     let newFavorites = [];
-    if (!favorites.includes(movie.id)) {
-      newFavorites = [...favorites, movie.id];
-    } else {
-      newFavorites = [...favorites];
+    if (type === 'movie') {
+      if (!movieFavorites.includes(item.id)) {
+        newFavorites = [...movieFavorites, item.id];
+      } else {
+        newFavorites = [...movieFavorites];
+      }
+      setMovieFavorites(newFavorites);
+    } else if (type === 'tv') {
+      if (!tvFavorites.includes(item.id)) {
+        newFavorites = [...tvFavorites, item.id];
+      } else {
+        newFavorites = [...tvFavorites];
+      }
+      setTvFavorites(newFavorites);
     }
-    setFavorites(newFavorites);
   };
 
-  const removeFromFavorites = (movie) => {
-    setFavorites(favorites.filter((mId) => mId !== movie.id));
-  };
-
-  const addReview = (movie, review) => {
-    setMyReviews({ ...myReviews, [movie.id]: review });
+  const removeFromFavorites = (item, type) => {
+    if (type === 'movie') {
+      setMovieFavorites(movieFavorites.filter((mId) => mId !== item.id));
+    } else if (type === 'tv') {
+      setTvFavorites(tvFavorites.filter((tId) => tId !== item.id));
+    }
   };
 
   const addToPlaylist = (movie) => {
@@ -38,11 +47,11 @@ const MoviesContextProvider = (props) => {
   return (
     <MoviesContext.Provider
       value={{
-        favorites,
+        movieFavorites,
+        tvFavorites,
         playlist,
         addToFavorites,
         removeFromFavorites,
-        addReview,
         addToPlaylist,
       }}>
       {props.children}
