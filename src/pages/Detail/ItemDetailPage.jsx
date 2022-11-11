@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router';
 import { useQuery } from 'react-query';
-import { getMovie, getTV, getPerson } from '../../api/tmdbApi';
+import { getMovie, getTV } from '../../api/tmdbApi';
 import DetailTemplate from '../../components/templateMovieDetail';
 import Spinner from '../../components/spinner';
 
@@ -11,8 +11,6 @@ const MovieDetailPage = ({ type }) => {
   var getDetailFunction;
   if (type === 'tv') {
     getDetailFunction = getTV;
-  } else if (type === 'person') {
-    getDetailFunction = getPerson;
   } else {
     getDetailFunction = getMovie;
   }

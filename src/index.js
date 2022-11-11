@@ -9,7 +9,8 @@ import PopularMoviePage from './pages/Movie/PopularMoviePage';
 import UpcomingMoviePage from './pages/Movie/UpcomingMoviePage';
 import TopRatedMoviePage from './pages/Movie/TopRatedMoviePage';
 import PopularTVPage from './pages/TV/PopularTVPage';
-import DetailPage from './pages/Detail';
+import PopularPeoplePage from './pages/People/PopularPeoplePage';
+import DetailPage from './pages/Detail/ItemDetailPage';
 import MenuContextProvider from "./contexts/menuContext";
 import MoviesContextProvider from "./contexts/moviesContext";
 
@@ -38,7 +39,7 @@ const App = () => {
               <Route path="/movies/top-rated" element={<TopRatedMoviePage />} />
               <Route path="/tv" element={<PopularTVPage />} />
               <Route path="/tv/:id" element={<DetailPage type='tv' />} />
-              <Route path="/people" element={<HomePage />} />
+              <Route path="/people" element={<PopularPeoplePage />} />
               <Route path="/people/:id" element={<HomePage />} />
               <Route path="/:user/favourites" element={<HomePage />} />
               <Route path="/:user/watchlist" element={<HomePage />} />
