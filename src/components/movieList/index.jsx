@@ -8,11 +8,10 @@ import 'swiper/css/scrollbar';
 import { Scrollbar } from 'swiper';
 
 function MovieList({ movies, type }) {
-  console.log(type);
   const navigate = useNavigate();
 
   const movieDetail = (movie) => {
-    navigate(`${type}${movie.id}`);
+    navigate(`${type}/${movie.id}`);
   };
 
   return (

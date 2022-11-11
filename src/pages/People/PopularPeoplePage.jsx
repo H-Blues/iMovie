@@ -12,7 +12,7 @@ const PopularPeoplePage = () => {
   };
 
   const { data, error, isLoading, isError } = useQuery(
-    [`popularMovies${page}`, { page: page }],
+    [`popularPeople${page}`, { page: page }],
     getPeople
   );
 

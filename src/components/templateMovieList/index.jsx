@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import Header from "../headerMovieList";
-import Filter from "../filter";
-import MovieCard from "../movieCard";
-import Grid from "@mui/material/Grid";
+import React, { useState } from 'react';
+import Header from '../headerMovieList';
+import MovieFilter from '../filter/movieFilter';
+import TvFiler from '../filter/tvFilter';
+import MovieCard from '../movieCard';
+import Grid from '@mui/material/Grid';
 
-function MovieListPage ({ movies, title, type }) {
-  const [nameFilter, setNameFilter] = useState("");
-  const [genreFilter, setGenreFilter] = useState("0");
+function MovieListPage({ movies, title, type }) {
+  const [nameFilter, setNameFilter] = useState('');
+  const [genreFilter, setGenreFilter] = useState('0');
   const genreId = Number(genreFilter);
 
   let displayedMovies = movies
@@ -16,14 +17,13 @@ function MovieListPage ({ movies, title, type }) {
       } else {
         return m.name.toLowerCase().search(nameFilter.toLowerCase()) !== -1;
       }
-
     })
     .filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
     });
 
   const handleChange = (type, value) => {
-    if (type === "name") setNameFilter(value);
+    if (type === 'name') setNameFilter(value);
     else setGenreFilter(value);
   };
 
@@ -35,11 +35,19 @@ function MovieListPage ({ movies, title, type }) {
         </Grid>
         <Grid item container spacing={2}>
           <Grid key="find" item xs={12} sm={6} md={4} lg={3} xl={2}>
-            <Filter
-              onUserInput={handleChange}
-              titleFilter={nameFilter}
-              genreFilter={genreFilter}
-            />
+            {type === 'movie' ? (
+              <MovieFilter
+                onUserInput={handleChange}
+                titleFilter={nameFilter}
+                genreFilter={genreFilter}
+              />
+            ) : (
+              <TvFiler
+                onUserInput={handleChange}
+                titleFilter={nameFilter}
+                genreFilter={genreFilter}
+              />
+            )}
           </Grid>
           {displayedMovies.map((m) => (
             <Grid key={m.id} item xs={6} sm={6} md={4} lg={3} xl={2}>

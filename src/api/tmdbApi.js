@@ -153,6 +153,20 @@ export const getPopularTV = async (args) => {
     });
 };
 
+export const getTVGenres = async () => {
+  return fetch(
+    `${baseUrl}genre/tv/list?api_key=${process.env.REACT_APP_TMDB_KEY}&language=${lang}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  })
+    .catch((error) => {
+      throw error;
+    });
+};
+
 export const getPerson = async (args) => {
   const [, idPart] = args.queryKey;
   const { id } = idPart;

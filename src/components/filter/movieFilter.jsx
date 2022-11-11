@@ -20,7 +20,7 @@ const formControl =
 };
 
 export default function FilterMoviesCard (props) {
-  const { data, error, isLoading, isError } = useQuery("genres", getMovieGenres);
+  const { data, error, isLoading, isError } = useQuery("moviesGenres", getMovieGenres);
 
   if (isLoading) {
     return <Spinner />;

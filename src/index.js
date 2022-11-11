@@ -10,7 +10,8 @@ import UpcomingMoviePage from './pages/Movie/UpcomingMoviePage';
 import TopRatedMoviePage from './pages/Movie/TopRatedMoviePage';
 import PopularTVPage from './pages/TV/PopularTVPage';
 import PopularPeoplePage from './pages/People/PopularPeoplePage';
-import DetailPage from './pages/Detail/ItemDetailPage';
+import ItemDetailPage from './pages/Detail/ItemDetailPage';
+import PeopleDetailPage from './pages/Detail/PeopleDetailPage';
 import MenuContextProvider from "./contexts/menuContext";
 import MoviesContextProvider from "./contexts/moviesContext";
 
@@ -34,13 +35,13 @@ const App = () => {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/movies" element={<PopularMoviePage />} />
-              <Route path="/movies/:id" element={<DetailPage type='movie' />} />
+              <Route path="/movies/:id" element={<ItemDetailPage type='movie' />} />
               <Route path="/movies/upcoming" element={<UpcomingMoviePage />} />
               <Route path="/movies/top-rated" element={<TopRatedMoviePage />} />
               <Route path="/tv" element={<PopularTVPage />} />
-              <Route path="/tv/:id" element={<DetailPage type='tv' />} />
+              <Route path="/tv/:id" element={<ItemDetailPage type='tv' />} />
               <Route path="/people" element={<PopularPeoplePage />} />
-              <Route path="/people/:id" element={<HomePage />} />
+              <Route path="/people/:id" element={<PeopleDetailPage />} />
               <Route path="/:user/favourites" element={<HomePage />} />
               <Route path="/:user/watchlist" element={<HomePage />} />
               <Route path="*" element={<Navigate to="/" />} />
