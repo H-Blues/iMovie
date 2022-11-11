@@ -46,6 +46,10 @@ export default function FilterTvCard(props) {
     handleChange(e, 'genre', e.target.value);
   };
 
+  const handleSortChange = (e) => {
+    handleChange(e, 'sort', e.target.value);
+  };
+
   return (
     <Card
       sx={{
@@ -82,6 +86,19 @@ export default function FilterTvCard(props) {
                 </MenuItem>
               );
             })}
+          </Select>
+        </FormControl>
+        <FormControl sx={{ ...formControl }}>
+          <InputLabel id="sort-label">Sort</InputLabel>
+          <Select
+            labelId="sort-label"
+            id="sort-select"
+            defaultValue="No Sort"
+            value={props.sortFilter}
+            onChange={handleSortChange}>
+            <MenuItem value="0">Not Sort</MenuItem>
+            <MenuItem value="1">Sort By Name</MenuItem>
+            <MenuItem value="2">Sort By Time</MenuItem>
           </Select>
         </FormControl>
       </CardContent>
