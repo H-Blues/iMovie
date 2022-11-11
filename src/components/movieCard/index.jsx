@@ -5,6 +5,7 @@ import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import defaultMovie from '../../assets/film-poster-placeholder.png';
 
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
@@ -24,11 +25,20 @@ const MovieCard = ({ movie, type }) => {
   return (
     <>
       <div className="movie-card" style={{ width: 'fit-content' }}>
-        <img
-          src={movieImg}
-          style={{ maxWidth: '100%', maxHeight: 'auto', borderRadius: '20px' }}
-          alt="notFound"
-        />
+        {movie.poster_path ? (
+          <img
+            src={movieImg}
+            style={{ maxWidth: '100%', maxHeight: 'auto', borderRadius: '20px' }}
+            alt="notFound"
+          />
+        ) : (
+          <img
+            src={defaultMovie}
+            style={{ maxWidth: '100%', maxHeight: 'auto', borderRadius: '20px' }}
+            alt="notFound"
+          />
+        )}
+
         <Typography
           gutterBottom
           variant="h6"

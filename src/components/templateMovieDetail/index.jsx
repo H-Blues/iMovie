@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { MoviesContext } from '../../contexts/moviesContext';
 import { getCredits } from '../../api/tmdbApi';
+import defaultPerson from '../../assets/person-dummy.jpg';
+import defaultFilm from '../../assets/film-poster-placeholder.png';
 import Spinner from '../spinner';
 import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -67,7 +69,12 @@ const DetailTemplate = ({ type, item, id }) => {
           }}
         />
         <div className="container">
-          <img className="avt" src={posterUrl + item.poster_path} alt="notFound" />
+          {item.poster_path ? (
+            <img className="avt" src={posterUrl + item.poster_path} alt="notFound" />
+          ) : (
+            <img className="avt" src={defaultFilm} alt="noImg" />
+          )}
+
           <div className="contentDetail">
             <div className="content">
               <h1>{item.title || item.name}</h1>
@@ -95,12 +102,21 @@ const DetailTemplate = ({ type, item, id }) => {
               {castToShow.map((cast) => {
                 return (
                   <div key={cast.id} className="castCard">
-                    <img
-                      src={originUrl + cast.profile_path}
-                      width="100%"
-                      style={{ borderRadius: '8px' }}
-                      alt="noThisCast"
-                    />
+                    {cast.profile_path ? (
+                      <img
+                        src={originUrl + cast.profile_path}
+                        width="100%"
+                        style={{ borderRadius: '8px' }}
+                        alt="noThisCast"
+                      />
+                    ) : (
+                      <img
+                        src={defaultPerson}
+                        width="100%"
+                        style={{ borderRadius: '8px' }}
+                        alt="noImg"
+                      />
+                    )}
                     <Link
                       to={`/people/${cast.id}`}
                       style={{ textDecoration: 'none', color: 'whitesmoke' }}>
