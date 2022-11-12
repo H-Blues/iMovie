@@ -26,7 +26,7 @@ const PopularMoviePage = () => {
 
   return (
     <>
-      <PageTemplate title="Top Rated Movies" movies={movies} type="movies" />
+      <PageTemplate title="Top Rated Movies" movies={movies} type="movie" />
       <Pagination
         count={10}
         page={page}

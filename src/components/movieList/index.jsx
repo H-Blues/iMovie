@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import MovieCard from '../movieCard';
 import Box from '@mui/material/Box';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,12 +7,6 @@ import 'swiper/css/scrollbar';
 import { Scrollbar } from 'swiper';
 
 function MovieList({ movies, type }) {
-  const navigate = useNavigate();
-
-  const movieDetail = (movie) => {
-    navigate(`${type}/${movie.id}`);
-  };
-
   return (
     <>
       {/* for pc */}
@@ -35,7 +28,7 @@ function MovieList({ movies, type }) {
           loopFillGroupWithBlank={true}
           modules={[Scrollbar]}>
           {movies.map((m, i) => (
-            <SwiperSlide key={i} onClick={() => movieDetail(m)}>
+            <SwiperSlide key={i}>
               <MovieCard key={m.id} movie={m} type={type} />
             </SwiperSlide>
           ))}
@@ -54,7 +47,7 @@ function MovieList({ movies, type }) {
           modules={[Scrollbar]}
           style={{ maxWidth: '90%' }}>
           {movies.map((m, i) => (
-            <SwiperSlide key={i} onClick={() => movieDetail(m)}>
+            <SwiperSlide key={i}>
               <MovieCard key={m.id} movie={m} type={type} />
             </SwiperSlide>
           ))}

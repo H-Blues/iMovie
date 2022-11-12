@@ -38,7 +38,6 @@ const MovieCard = ({ movie, type }) => {
             alt="notFound"
           />
         )}
-
         <Typography
           gutterBottom
           variant="h6"

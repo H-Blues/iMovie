@@ -21,7 +21,7 @@
   top: 10%;
   width: 55%;
   right: 10%;
-  height: auto;
+  max-height: 100vh;
   padding-bottom: 50px;
   z-index: 10;
   border-radius: 20px;

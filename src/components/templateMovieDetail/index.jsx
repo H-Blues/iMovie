@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { MoviesContext } from '../../contexts/moviesContext';
@@ -41,10 +41,6 @@ const DetailTemplate = ({ type, item, id }) => {
     context.removeFromFavorites(item, type);
   };
 
-  useEffect(() => {
-    console.log(isFavorite);
-  }, [isFavorite]);
-
   if (isLoading) {
     return <Spinner />;
   }
@@ -74,7 +70,6 @@ const DetailTemplate = ({ type, item, id }) => {
           ) : (
             <img className="avt" src={defaultFilm} alt="noImg" />
           )}
-
           <div className="contentDetail">
             <div className="content">
               <h1>{item.title || item.name}</h1>

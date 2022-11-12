@@ -12,6 +12,7 @@ import PopularTVPage from './pages/TV/PopularTVPage';
 import PopularPeoplePage from './pages/People/PopularPeoplePage';
 import ItemDetailPage from './pages/Detail/ItemDetailPage';
 import PeopleDetailPage from './pages/Detail/PeopleDetailPage';
+import MyFavorite from './pages/Account/MyFavorite';
 import MenuContextProvider from "./contexts/menuContext";
 import MoviesContextProvider from "./contexts/moviesContext";
 
@@ -34,15 +35,15 @@ const App = () => {
           <MoviesContextProvider>
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/movies" element={<PopularMoviePage />} />
-              <Route path="/movies/:id" element={<ItemDetailPage type='movie' />} />
-              <Route path="/movies/upcoming" element={<UpcomingMoviePage />} />
-              <Route path="/movies/top-rated" element={<TopRatedMoviePage />} />
+              <Route path="/movie" element={<PopularMoviePage />} />
+              <Route path="/movie/:id" element={<ItemDetailPage type='movie' />} />
+              <Route path="/movie/upcoming" element={<UpcomingMoviePage />} />
+              <Route path="/movie/top-rated" element={<TopRatedMoviePage />} />
               <Route path="/tv" element={<PopularTVPage />} />
               <Route path="/tv/:id" element={<ItemDetailPage type='tv' />} />
               <Route path="/people" element={<PopularPeoplePage />} />
               <Route path="/people/:id" element={<PeopleDetailPage />} />
-              <Route path="/:user/favourites" element={<HomePage />} />
+              <Route path="/account/favourite" element={<MyFavorite />} />
               <Route path="/:user/watchlist" element={<HomePage />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>

@@ -60,14 +60,14 @@ const HomePage = () => {
           <h2 style={styles.h2}>Popular Movies</h2>
           <Button
             component={Link}
-            to="/movies"
+            to="/movie"
             variant="contained"
             color="primary"
             style={styles.button}>
             MORE
           </Button>
         </div>
-        <MovieList movies={popularMovies} type="movies" />
+        <MovieList movies={popularMovies} type="movie" />
       </div>
 
       <div className="section" style={{ marginBottom: '20px' }}>
@@ -75,14 +75,14 @@ const HomePage = () => {
           <h2 style={styles.h2}>Top Rated Movies</h2>
           <Button
             component={Link}
-            to="/movies/top-rated"
+            to="/movie/top-rated"
             variant="contained"
             color="primary"
             style={styles.button}>
             MORE
           </Button>
         </div>
-        <MovieList movies={topRatedMovies} type="movies" />
+        <MovieList movies={topRatedMovies} type="movie" />
       </div>
 
       <div className="section" style={{ marginBottom: '20px' }}>
@@ -90,14 +90,14 @@ const HomePage = () => {
           <h2 style={styles.h2}>Upcoming Movies</h2>
           <Button
             component={Link}
-            to="/movies/top-rated"
+            to="/movie/top-rated"
             variant="contained"
             color="primary"
             style={styles.button}>
             MORE
           </Button>
         </div>
-        <MovieList movies={upcoimgMovies} type="movies" />
+        <MovieList movies={upcoimgMovies} type="movie" />
       </div>
 
       <div className="section" style={{ marginBottom: '20px' }}>
