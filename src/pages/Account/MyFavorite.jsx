@@ -57,17 +57,17 @@ const MyFavorite = () => {
           )}
         </div>
         <Swiper
-          style={{ left: '10%', marginTop: '-10%' }}
-          slidesPerView={4.75}
-          spaceBetween={10}
+          style={{ width: '80%', marginTop: '-10%' }}
+          slidesPerView={4}
+          spaceBetween={2}
           scrollbar={{
-            hide: false,
+            hide: true,
           }}
           loopFillGroupWithBlank={true}
           modules={[Scrollbar]}>
           {movies.map((m, i) => (
-            <SwiperSlide key={i}>
-              <MovieCard key={m.id} movie={m} type="movies" />
+            <SwiperSlide key={i} style={{ width: '20%' }}>
+              <MovieCard key={m.id} movie={m} type="movie" />
             </SwiperSlide>
           ))}
         </Swiper>
