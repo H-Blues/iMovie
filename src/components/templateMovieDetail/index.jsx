@@ -8,6 +8,7 @@ import defaultFilm from '../../assets/film-poster-placeholder.png';
 import Spinner from '../spinner';
 import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import Chip from '@mui/material/Chip';
 import './index.css';
 
@@ -79,7 +80,7 @@ const DetailTemplate = ({ type, item, id }) => {
                 </IconButton>
               ) : (
                 <IconButton aria-label="add to favorites" onClick={addToFavorite}>
-                  <FavoriteIcon color="primary" fontSize="large" />
+                  <FavoriteBorderOutlinedIcon color="error" fontSize="large" />
                 </IconButton>
               )}
               {item.genres.map((genre) => {
