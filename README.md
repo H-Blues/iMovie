@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+# iMovie - Find You Like
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Creator: Zihan Zhang
 
-## Available Scripts
+## Overiew
 
-In the project directory, you can run:
+iMovie is a react application used TMDB APIs, and "i" sounds like "love" in Chinese.
 
-### `npm start`
+This project is the continuous assignment of module "Web App Development 2" in South East Technological University. Thanks for my lecturer: Rosanne Birney. Her instuction inspired me a lot during my react learning.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- New react-context file: [menuContext](https://github.com/H-Blues/iMovie/blob/develop/src/contexts/menuContext.jsx)
+- A new header with menu and a simple footer
+- [Glassmorphism CSS Style](#glassmorphism)
+- [Swiper component](#swiper)
+- YouTuBe videos links
+- Default images if fetching fails
+- Pagination and Sorting (by name + by time)
+- FavoriteIcon presentation optimization
+- Full caching support (useQuery / [useQueries](#useQueries))
+- Responsive UI
+- New and updated views:
+  - Movie raleted pages (3 list + 1 detail)
+  - TV related pages (1 list + 1 detail)
+  - People related pages (1 list + 1 detail)
+  - Account favorite movies page
+- New Material UI components
+  - [Avator](https://mui.com/material-ui/react-avatar/)
+  - [Chip](https://mui.com/material-ui/api/chip/)
+  - [Custom Rating](https://mui.com/material-ui/react-rating/)
+  - [Menu](https://mui.com/material-ui/react-menu/)
 
-### `npm test`
+## Setup Requirements
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I used `npm` to manage packages in this project, and uploaded the `package.json` file. Enter `npm install` to install all the dependencies demanded. If you already have a react-app, please enter the commands as follows and install these packages:
 
-### `npm run build`
+1. Material UI - `npm install @mui/material @emotion/react @emotion/styled`
+2. React Router - `npm install react-router-dom`
+3. React Query - `npm install react-query`
+4. Swiper JS - `npm install swiper`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+After installing all packages, use `npm start` to run this project.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Open http://localhost:3000 to view it in your browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Notice: API Key is necessary to run successfully. A file `.env` in root folder should be created by custom. The content in the file is like:
 
-### `npm run eject`
+```
+REACT_APP_TMDB_KEY = <<Your_TMDB_API>>
+FAST_REFRESH = false
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## API Endpoints
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In this project, [TMDB API](https://developers.themoviedb.org/3/getting-started/introduction) is used to get necessary data. Here is the list of API endpoints that used in this project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Movies
+  - Movie details - /movie/{movie_id}
+  - Movie credits - /movie/{movie_id}/credits
+  - Popular movie list - /movie/popular
+  - Top rated movie list - /movie/top_rated
+  - Upcoming movie list -
+    /movie/upcoming
+- TV
+  - TV details - /tv/{tv_id}
+  - TV credits - /tv/{tv_id}/credits
+  - Popular TV list - /tv/popular
+- People
+  - People details - /person/{person_id}
+  - Popular people list - /person/popular
+- Genres
+  - Movie genres - /genre/movie/list
+  - TV genres - /genre/tv/list
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Routing
 
-## Learn More
+- / - display the home page
+- /movie - display all popular movies
+- /movie/:id - display a particular movie
+- /movie/upcoming - display all upcoming movies
+- /movie/top-rated - display all top-ratd movies
+- /tv - display all popular TV series
+- /tv/:id - display a particular TV series
+- /people - display all popular people
+- /people/:id - display a particular person
+- /account/favourite - display the favorurite movies of the user
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Independent Learning
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### <h3 id="glassmorphism"> Glassmorphism </h3>
 
-### Code Splitting
+Essentially, the main aspect of glassmorphism is a semi-transparent background, with a sublime shadow and border. This is an example image.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![glasmorphismEg](https://www.freecodecamp.org/news/content/images/2022/04/2022-04-01--19--1.png)
 
-### Analyzing the Bundle Size
+Glassmorphism is used in homepage, you can check the code in [`movieBackdrop`](https://github.com/H-Blues/iMovie/blob/develop/src/components/movieBackdrop/index.jsx) file, it's in `src/components/movieBackdrop/`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+I get some help from CodePen https://codepen.io/ and this is a blog introduces glassmorphism: https://www.freecodecamp.org/news/glassmorphism-how-to-create-a-glass-card-in-figma/
 
-### Making a Progressive Web App
+### <h3 id="swiper"> Swiper </h3>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Swiper - the most modern mobile touch slider. This is its website: https://swiperjs.com/.
 
-### Advanced Configuration
+I used `Swiper` in homepage and myfavorite page. You can check the code in [`movieList`](https://github.com/H-Blues/iMovie/blob/src/components/movieList/index.jsx) file, it's in `src/components/movieList/`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### <h3 id="useQueries"> useQueries </h3>
 
-### Deployment
+React Query - Performant and powerful data synchronization for React.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Fetch, cache and update data in your React and React Native applications all without touching any "global state". This is its website: https://react-query-v3.tanstack.com/
 
-### `npm run build` fails to minify
+The `useQueries` hook can be used to fetch a variable number of queries. I used it in homepage. Here is the part of codes:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+const results = useQueries([
+  { queryKey: ['popularMovies1', { page: 1 }], queryFn: getPopularMovies },
+  { queryKey: ['topRatedMovies1', { page: 1 }], queryFn: getTopRatedMovies },
+  { queryKey: ['upComingMovies1', { page: 1 }], queryFn: getUpcoming },
+  { queryKey: ['popularTV1', { page: 1 }], queryFn: getPopularTV },
+]);
+```
