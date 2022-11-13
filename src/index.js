@@ -44,7 +44,6 @@ const App = () => {
               <Route path="/people" element={<PopularPeoplePage />} />
               <Route path="/people/:id" element={<PeopleDetailPage />} />
               <Route path="/account/favourite" element={<MyFavorite />} />
-              <Route path="/:user/watchlist" element={<HomePage />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </MoviesContextProvider>
