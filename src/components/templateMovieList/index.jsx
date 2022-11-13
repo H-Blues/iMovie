@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../headerMovieList';
 import MovieFilter from '../filter/movieFilter';
-import TvFiler from '../filter/tvFilter';
+import TvFilter from '../filter/tvFilter';
 import MovieCard from '../movieCard';
 import Grid from '@mui/material/Grid';
 
@@ -48,7 +48,7 @@ function MovieListPage({ movies, title, type }) {
         </Grid>
         <Grid item container spacing={2}>
           <Grid key="find" item xs={12} sm={6} md={4} lg={3} xl={2}>
-            {type === 'movies' ? (
+            {type === 'movie' ? (
               <MovieFilter
                 onUserInput={handleChange}
                 titleFilter={nameFilter}
@@ -56,7 +56,7 @@ function MovieListPage({ movies, title, type }) {
                 sortFilter={sortFilter}
               />
             ) : (
-              <TvFiler
+              <TvFilter
                 onUserInput={handleChange}
                 titleFilter={nameFilter}
                 genreFilter={genreFilter}
